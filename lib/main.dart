@@ -38,36 +38,53 @@ class Home extends StatelessWidget {
                   'https://images.unsplash.com/photo-1587663298189-6e05e9017fd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8NTI1OTUwfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=750&q=60'),
               fit: BoxFit.fill),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Lets find your',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              Text(
-                'Paradise',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              Text(
-                'Find with us your dream home',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Container(
-                height: 300,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                  // padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                  // textStyle:
-                  //     TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Lets find your',
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        'Paradise',
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Find with us your dream home',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text(
+                        'quickly and precisely',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  ),
                 ),
-                onPressed: () {},
-                child: const Text('Get started'),
-              ),
-            ],
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    minimumSize:
+                        Size(MediaQuery.of(context).size.width * 0.9, 50),
+                    textStyle: Theme.of(context).textTheme.headline6,
+                  ),
+                  onPressed: () {},
+                  child: const Text('Get started'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
