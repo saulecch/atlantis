@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_perfect/pixel_perfect.dart';
 
 void main() {
   runApp(Atlantis());
@@ -9,6 +10,7 @@ class Atlantis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Atlantis',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -17,7 +19,13 @@ class Atlantis extends StatelessWidget {
               fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.black),
           headline5: TextStyle(
               fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
-          headline6: TextStyle(fontSize: 16.0, color: Colors.black),
+          headline6: TextStyle(
+              fontSize: 14.5, fontWeight: FontWeight.w500, color: Colors.grey),
+          subtitle1: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              letterSpacing: -1),
         ),
       ),
       home: Home(),
@@ -27,6 +35,120 @@ class Atlantis extends StatelessWidget {
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PixelPerfect(
+      assetPath: 'assets/Home.jpg',
+      scale: 375 / MediaQuery.of(context).size.width,
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              TopBar(),
+              SearchBar(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SearchBar extends StatelessWidget {
+  const SearchBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 28),
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        color: Colors.white,
+        child: Container(
+          height: 52,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: TextField(
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.tune),
+                hintText: 'Search residence',
+                hintStyle: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    letterSpacing: 0.5),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TopBar extends StatelessWidget {
+  const TopBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 16.0,
+              ),
+              Text(
+                'Location',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.location_pin,
+                    size: 18,
+                    color: Colors.blue,
+                  ),
+                  Text(
+                    'Surabaya, East Java',
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Image.asset(
+              'assets/Profile.jpg',
+              height: 55,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StartScreen extends StatelessWidget {
+  const StartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,18 +192,21 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width * 0.9, 50),
+                      textStyle: Theme.of(context).textTheme.headline6,
                     ),
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.9, 50),
-                    textStyle: Theme.of(context).textTheme.headline6,
+                    onPressed: () {},
+                    child: const Text('Get started'),
                   ),
-                  onPressed: () {},
-                  child: const Text('Get started'),
                 ),
               ],
             ),
